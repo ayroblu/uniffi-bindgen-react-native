@@ -33,6 +33,7 @@ extern "C" {
 {% include "BridgingHelper.cpp" %}
 {% include "RustBufferHelper.cpp" %}
 {% include "RustCallStatusHelper.cpp" %}
+{% include "MutablePointer.cpp" %}
 {% include "VTableRegistryHelper.cpp" %}
 
 // This calls into Rust.
@@ -51,7 +52,7 @@ extern "C" {
 {%-       else %}
     // Implementation of callback function calling from JS to Rust {{ callback.name() }},
     // passed from Rust to JS as part of async callbacks.
-{%-         include "ForeignFuture.cpp" %}
+{%-         include "ForeignFutureDroppedCallbackStruct.cpp" %}
 {%-       endif %}
 {%-     when FfiDefinition::Struct(ffi_struct) %}
 {%-       include "Struct.cpp" %}
